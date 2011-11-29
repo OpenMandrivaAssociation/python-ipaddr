@@ -1,4 +1,4 @@
-%define name ipaddr
+%define name python-ipaddr
 %define version 2.1.7
 %define unmangled_version 2.1.7
 %define release 1
