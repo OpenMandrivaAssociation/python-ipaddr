@@ -47,3 +47,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
+
+
+%changelog
+* Wed Dec 07 2011 Pischulin Anton <apischulin@mandriva.org> 2.1.7-1
++ Revision: 738482
+- add python-ipaddr sources
+
