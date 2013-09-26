@@ -1,56 +1,32 @@
-%define name python-ipaddr
-%define version 2.1.7
-%define unmangled_version 2.1.7
-%define release 1
+%define oname ipaddr
+%define name python-%{oname}
+%define version 2.1.10
 
-Summary: ipaddr
+Summary: A library for working with IP addresses
 Name: %{name}
 Version: %{version}
-Release: %{release}
-Source0: %{name}-%{unmangled_version}.tar.gz
-License: Apache License, Version 2.0
+Release: 1
+Source0: http://ipaddr-py.googlecode.com/files/%{oname}-%{version}.tar.gz
+License: Apache License
 Group: Development/Python
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Prefix: %{_prefix}
-BuildArch: noarch
 Url: http://code.google.com/p/ipaddr-py/
-AutoReq: 0
-
-BuildRequires: python-devel python-setuptools
+BuildRequires: python-devel
+BuildArch: noarch
 
 %description
-ipaddr
+ipaddr is a library for working with IP addresses, both IPv4 and IPv6.
+It was developed by Google for internal use, and is now open source.
 
 %prep
-%setup -n %{name}-%{unmangled_version}
+%setup -q -n %{oname}-%{version}
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
-python setup.py install --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
+%{__python} setup.py install --skip-build --root=%{buildroot}
 
-touch DIRS
-for i in `cat INSTALLED_FILES`; do
-    if [ -f ${RPM_BUILD_ROOT}/$i ]; then
-	echo $i >>FILES
-    fi
-    if [ -d ${RPM_BUILD_ROOT}/$i ]; then
-	echo %dir $i >>DIRS
-    fi
-done
-
-sed -e "/\.py[co]$/d" -e "s/\.py$/.py*/" DIRS FILES >INSTALLED_FILES
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-%files -f INSTALLED_FILES
-%defattr(-,root,root)
-
-
-%changelog
-* Wed Dec 07 2011 Pischulin Anton <apischulin@mandriva.org> 2.1.7-1
-+ Revision: 738482
-- add python-ipaddr sources
-
+%files
+%doc COPYING README RELEASENOTES
+%py_puresitedir/%{oname}.py
+%py_puresitedir/*.egg-info
