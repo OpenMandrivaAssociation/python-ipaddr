@@ -1,24 +1,22 @@
 %define oname ipaddr
-%define name python-%{oname}
-%define version 2.1.10
 
-Summary: A library for working with IP addresses
-Name: %{name}
-Version: %{version}
-Release: 1
-Source0: http://ipaddr-py.googlecode.com/files/%{oname}-%{version}.tar.gz
-License: Apache License
-Group: Development/Python
-Url: http://code.google.com/p/ipaddr-py/
-BuildRequires: python-devel
-BuildArch: noarch
+Summary:	A library for working with IP addresses
+Name:		python-%{oname}
+Version:	2.1.10
+Release:	1
+License:	Apache License
+Group:		Development/Python
+Url:		http://code.google.com/p/ipaddr-py/
+Source0:	http://ipaddr-py.googlecode.com/files/%{oname}-%{version}.tar.gz
+BuildArch:	noarch
+BuildRequires:	pkgconfig(python)
 
 %description
 ipaddr is a library for working with IP addresses, both IPv4 and IPv6.
 It was developed by Google for internal use, and is now open source.
 
 %prep
-%setup -q -n %{oname}-%{version}
+%setup -qn %{oname}-%{version}
 
 %build
 %{__python} setup.py build
@@ -28,5 +26,6 @@ It was developed by Google for internal use, and is now open source.
 
 %files
 %doc COPYING README RELEASENOTES
-%py_puresitedir/%{oname}.py
-%py_puresitedir/*.egg-info
+%{py_puresitedir}/%{oname}.py
+%{py_puresitedir}/*.egg-info
+
