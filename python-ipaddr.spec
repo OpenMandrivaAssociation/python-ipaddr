@@ -2,8 +2,8 @@
 
 Summary:	A library for working with IP addresses
 Name:		python-%{oname}
-Version:	2.1.11
-Release:	3
+Version:	2.2.0
+Release:	1
 License:	Apache License
 Group:		Development/Python
 Url:		http://code.google.com/p/ipaddr-py/
@@ -54,13 +54,14 @@ pushd %{py2dir}
 popd
 
 %files
-%{py_puresitedir}/%{oname}.py
+%{py_puresitedir}/%{oname}.py*
+%{py_puresitedir}/__pycache__/*
 %{py_puresitedir}/*.egg-info
 
 %files -n python2-%{oname}
-%{py2_puresitedir}/%{oname}.py
+%{py2_puresitedir}/%{oname}.py*
 %{py2_puresitedir}/*.egg-info
 
 %files doc
-%doc RELEASENOTES README COPYING
+%doc README COPYING
 
