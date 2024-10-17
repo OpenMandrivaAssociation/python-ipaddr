@@ -6,7 +6,7 @@ Version:	2.2.0
 Release:	6
 License:	Apache License
 Group:		Development/Python
-Url:		http://code.google.com/p/ipaddr-py/
+Url:		https://code.google.com/p/ipaddr-py/
 Source0:	https://pypi.python.org/packages/source/i/%{oname}/%{oname}-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	pkgconfig(python3)
